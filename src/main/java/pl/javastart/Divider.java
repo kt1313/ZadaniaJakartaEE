@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet("/divider")
 public class Divider extends HttpServlet {
@@ -21,16 +22,35 @@ public class Divider extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
     }
     protected List<Integer> countDividers(HttpServletRequest request, HttpServletResponse response) {
-        String liczbaString = request.getParameter("liczba");
-        int liczba = Integer.parseInt(liczbaString);
+        String numberString = request.getParameter("number");
+        int number = Integer.parseInt(numberString);
+        int numberMinus=0;
         List<Integer> list= new ArrayList<>();
-        System.out.println("Podzielniki liczby :" + " " +liczbaString);
-        for (int i = 1; i <= liczba; i++) {
-            if (liczba % i == 0) {
+        System.out.println("Podzielniki liczby : " +number);
+        for (int i = 1; i <= Math.abs(number); i++) {
+            if (number % i == 0) {
                 list.add(i);
             }
+
             ;
         }
+        if (number<0){
+            //System.out.println(number);
+            List<Integer> list2=new ArrayList<>();
+            //dodaje wartości minusowe do LISTY jesli liczba mniejsza os zera
+            for (Integer integ:list
+            ) {
+                numberMinus=integ*(-1);
+                //System.out.println(numberMinus);
+                list2.add(numberMinus);
+            }
+            list.addAll(list2);
+            for (Integer cont:list
+                 ) {
+                System.out.println(cont);
+            }
+        }
+
         return list;
     }
 
@@ -42,7 +62,7 @@ public class Divider extends HttpServlet {
         writer.println("<body>");
         //writer.println("<ol>");
         writer.print("<h1>");
-        writer.print("Dzielniki liczby" +request.getParameter("liczba"));
+        writer.print("Podzielniki liczby " +request.getParameter("number"));
         writer.println("</h1>");
         for (Integer i : list) {
             //writer.printf("<li>%s</li>\n", key);
