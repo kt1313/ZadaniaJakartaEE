@@ -42,6 +42,7 @@ public class Divider extends HttpServlet {
         writer.println("<body>");
         //writer.println("<ol>");
         writer.print("<h1>");
+        writer.print("Dzielniki liczby" +request.getParameter("liczba"));
         writer.println("</h1>");
         for (Integer i : list) {
             //writer.printf("<li>%s</li>\n", key);
