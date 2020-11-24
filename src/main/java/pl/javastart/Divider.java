@@ -24,8 +24,8 @@ public class Divider extends HttpServlet {
         String liczbaString = request.getParameter("liczba");
         int liczba = Integer.parseInt(liczbaString);
         List<Integer> list= new ArrayList<>();
-        System.out.println("Podzielniki liczby " + liczbaString);
-        for (int i = 0; i < liczba; i++) {
+        System.out.println("Podzielniki liczby :" + " " +liczbaString);
+        for (int i = 1; i <= liczba; i++) {
             if (liczba % i == 0) {
                 list.add(i);
             }
