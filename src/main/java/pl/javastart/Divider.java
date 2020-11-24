@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -31,8 +32,6 @@ public class Divider extends HttpServlet {
             if (number % i == 0) {
                 list.add(i);
             }
-
-            ;
         }
         if (number<0){
             //System.out.println(number);
@@ -50,7 +49,7 @@ public class Divider extends HttpServlet {
                 System.out.println(cont);
             }
         }
-
+        Collections.sort(list);
         return list;
     }
 
